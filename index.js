@@ -10,3 +10,38 @@ const messageConfig = {
       "Loki"
   ]
 };
+// const printCard = function () {
+//   console.log(this.frontContent);
+//   console.log(this.insideContent);
+
+//   console.log("Debug Before forEach: " + this);
+//   this.signatories.forEach(function (signatory) {
+//     console.log("Debug Inside: " + this);
+//     // const message = `${this.closing[signatory]}, ${signatory}`
+//     // console.log(message)
+//   });
+// };
+
+// printCard.call(messageConfig);
+
+
+// thisArg
+const printCard = function () {
+  console.log(this.frontContent);
+  console.log(this.insideContent);
+
+  this.signatories.forEach(function (signatory) {
+    const message = `${this.closing[signatory]}, ${signatory}`;
+    console.log(message);
+  }, this);
+};
+
+printCard.call(messageConfig);
+
+//
+const greeter = function (nameToGreet) {
+  const message = `Good morning ${nameToGreet}`;
+  console.log(message);
+  return "Greeted: " + nameToGreet;
+}.bind(this);
+const result = greeter("Max Again");
